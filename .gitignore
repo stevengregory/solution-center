@@ -1,0 +1,15 @@
+# Bower & Node
+src/bower_components
+node_modules
+
+# TypeScript, Browserify and Less
+typings
+src/app/output.js
+src/app/bundle.js
+src/styles/main.css
+
+# Editor
+.vscode
+
+# Misc
+src/npm-debug.log

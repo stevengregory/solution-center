@@ -1,0 +1,24 @@
+<div class="get-solution">
+  I need a <a ng-click="vm.toggleDataList = !vm.toggleDataList">{{ vm.dataTypeSelection }}</a> for <a ng-click="vm.toggleIndustryList = !vm.toggleIndustryList">{{ vm.industryTypeSelection }}</a> and <a ng-click="vm.toggleProductList = !vm.toggleProductList">{{ vm.productSelection }}</a>.
+  <ul ng-show="vm.toggleDataList">
+    <li ng-repeat="(key, value) in vm.dataTypes" ng-click="vm.selectDataType(key)" ng-class="{ selected: vm.dataTypeSelection == value }">{{ value }} <span ng-class="{ 'glyphicon glyphicon-ok': vm.dataTypeSelection == value }"></span></li>
+  </ul>
+  <ul ng-show="vm.toggleIndustryList">
+    <li ng-repeat="(key, value) in vm.industryTypes" ng-click="vm.selectIndustryType(value)" ng-class="{ selected: vm.industryTypeSelection == value }">{{ value }} <span ng-class="{ 'glyphicon glyphicon-ok': vm.industryTypeSelection == value }"></span></li>
+  </ul>
+  <ul ng-show="vm.toggleProductList">
+    <li ng-repeat="(key, value) in vm.products" ng-click="vm.selectProduct(value)" ng-class="{ selected: vm.productSelection == value }">{{ value }} <span ng-class="{ 'glyphicon glyphicon-ok': vm.productSelection == value }"></span></li>
+  </ul>
+</div>
+<div class="center-block">
+  <button type="button" class="btn btn-lg btn-danger center-block" ng-click="vm.showSearch = true">Find it!</button>
+</div>
+<div class="search-results" ng-show="vm.showSearch">
+  <h3 ng-show="filtered.length">{{ filtered.length }} {{ vm.dataTypeSelection }}{{ filtered.length === 1 ? '' : 's' }} found.</h3>
+  <ul ng-repeat="solution in vm.solutions | filter: { industry: ( vm.industryTypeSelection === 'any industry' ? '' : vm.industryTypeSelection ), product: ( vm.productSelection === 'any product' ? '' : vm.productSelection ) } | filter:query as filtered">
+    <li><a href="/{{ vm.dataTypeSelection }}/{{ $index }}"><strong>{{ solution.name }}</strong></a></li>
+    <li><a href="/{{ vm.dataTypeSelection }}/{{ $index }}">{{ solution.industry }}</a></li>
+    <li><a href="/{{ vm.dataTypeSelection }}/{{ $index }}">{{ solution.product }}</a></li>
+  </ul>
+  <h3 class="no-results" ng-hide="filtered.length">Oh snap! No results found.</h3>
+</div>
