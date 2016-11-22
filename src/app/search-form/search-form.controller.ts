@@ -13,14 +13,12 @@ namespace app.form {
     vm.selectIndustryType = selectIndustryType;
     vm.selectProduct = selectProduct;
 
-    activate();
-
-    function activate(): void {
+    vm.$onInit = function(): void {
       vm.dataTypes = config.dataTypes;
       vm.dataTypeSelection = vm.dataTypes[0];
       getIndustryTypes();
       getProducts();
-    }
+    };
 
     function getDataSet(): any {
       vm.solutions = vm.dataTypeSelection === vm.dataTypes[0] ? dataService.getSolutions() : dataService.getSolutionWins();
