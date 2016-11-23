@@ -26,15 +26,13 @@ namespace app.form {
     }
 
     function getIndustryTypes(): Array<string> {
-      var solutions = getDataSet();
-      vm.industryTypes = searchFormService.removeDuplicates(searchFormService.buildSelections(solutions, 'any industry', 'industry'));
+      vm.industryTypes = searchFormService.removeDuplicates(searchFormService.buildSelections(getDataSet(), 'any industry', 'industry'));
       vm.industryTypeSelection = vm.industryTypes[0];
       return vm.industryTypes;
     }
 
     function getProducts(): Array<string> {
-      var solutions = getDataSet();
-      vm.products = searchFormService.removeDuplicates(searchFormService.buildSelections(solutions, 'any product', 'product'));
+      vm.products = searchFormService.removeDuplicates(searchFormService.buildSelections(getDataSet(), 'any product', 'product'));
       vm.productSelection = vm.products[0];
       return vm.products;
     }

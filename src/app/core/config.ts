@@ -6,7 +6,7 @@ namespace app.core {
     1: 'solution win'
   };
 
-  let config = {
+  const config = {
     dataTypes: dataTypes
   };
 
