@@ -10,12 +10,6 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   plug = require('gulp-load-plugins')();
 
-gulp.task('htmlhint', function() {
-  return gulp.src('src/index.html')
-    .pipe(plug.htmlhint())
-    .pipe(plug.htmlhint.reporter());
-});
-
 gulp.task('tslint', function() {
   return gulp.src(['src/app/**/*.ts'])
     .pipe(tslint())
@@ -34,9 +28,7 @@ gulp.task('ts', function() {
     'typings/index.d.ts',
     'src/app/app.ts',
     'src/app/core/*.ts',
-    'src/app/search-form/search-form.service.ts',
-    'src/app/search-form/search-form.component.ts',
-    'src/app/search-form/search-form.controller.ts'
+    'src/app/search-form/*.ts'
   ];
   var tsResult = gulp.src(sourceTsFiles)
     .pipe(ts(tsProject));
@@ -48,7 +40,6 @@ gulp.task('bundle', ['ts'], function() {
   browserify({
       entries: [
         'src/bower_components/angular/angular.min.js',
-        'src/bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'src/app/output.js'
       ]
     })
@@ -58,7 +49,6 @@ gulp.task('bundle', ['ts'], function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/index.html', ['htmlhint']);
   gulp.watch('src/app/**/*.ts', ['bundle']);
   gulp.watch('src/styles/main.scss', ['sass']);
 });

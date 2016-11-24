@@ -2,7 +2,7 @@
 src/bower_components
 node_modules
 
-# TypeScript, Browserify and Less
+# TypeScript, Browserify and CSS
 typings
 src/app/output.js
 src/app/bundle.js
