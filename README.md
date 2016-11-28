@@ -1,7 +1,7 @@
 Solution Center
 ====================
 
-ServiceNow Solution Center in AngularJS and TypeScript.
+ServiceNow Solution Center in Angular 1.5 and TypeScript.
 
 ## Running Local
 
@@ -14,3 +14,9 @@ ServiceNow Solution Center in AngularJS and TypeScript.
 1. Run `bower install`
 
 1. Run `npm start` to start the server and launch the app
+
+## Demo
+
+Check it!
+
+[Solution Center Demo](http://stevengregory.ninja/demos/solution-center/)

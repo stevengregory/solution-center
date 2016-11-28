@@ -1,29 +1,30 @@
 'use strict';
 
-var gulp = require('gulp'),
-  browserify = require('browserify'),
-  source = require('vinyl-source-stream'),
-  ts = require('gulp-typescript'),
-  tslint = require('gulp-tslint'),
-  tsProject = ts.createProject('tsconfig.json'),
-  lite = require('lite-server'),
-  sass = require('gulp-sass'),
-  plug = require('gulp-load-plugins')();
+import gulp from 'gulp';
+import sass from 'gulp-sass';
+import browserify from 'browserify';
+import lite from 'lite-server';
+import source from 'vinyl-source-stream';
+import ts from 'gulp-typescript';
+import tslint from 'gulp-tslint';
 
-gulp.task('tslint', function() {
+const tsProject = ts.createProject('tsconfig.json');
+
+gulp.task('tslint', () => {
   return gulp.src(['src/app/**/*.ts'])
     .pipe(tslint())
     .pipe(tslint.report('verbose'));
 });
 
-gulp.task('sass', function () {
+gulp.task('sass', () => {
   return gulp.src('src/styles/main.scss')
-    .pipe(sass())
-    .pipe(plug.rename('main.css'))
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }))
     .pipe(gulp.dest('src/styles'));
 });
 
-gulp.task('ts', function() {
+gulp.task('ts', ['tslint'], () => {
   var sourceTsFiles = [
     'typings/index.d.ts',
     'src/app/app.ts',
@@ -36,7 +37,7 @@ gulp.task('ts', function() {
     .pipe(gulp.dest('src/app'));
 });
 
-gulp.task('bundle', ['ts'], function() {
+gulp.task('bundle', ['ts'], () => {
   browserify({
       entries: [
         'src/bower_components/angular/angular.min.js',
@@ -48,7 +49,7 @@ gulp.task('bundle', ['ts'], function() {
     .pipe(gulp.dest('src/app'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   gulp.watch('src/app/**/*.ts', ['bundle']);
   gulp.watch('src/styles/main.scss', ['sass']);
 });
