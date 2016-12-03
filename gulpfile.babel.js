@@ -3,7 +3,6 @@
 import gulp from 'gulp';
 import sass from 'gulp-sass';
 import browserify from 'browserify';
-import lite from 'lite-server';
 import source from 'vinyl-source-stream';
 import ts from 'gulp-typescript';
 import tslint from 'gulp-tslint';
@@ -17,7 +16,7 @@ gulp.task('tslint', () => {
 });
 
 gulp.task('sass', () => {
-  return gulp.src('src/styles/main.scss')
+  return gulp.src('src/styles/style.scss')
     .pipe(sass({
       outputStyle: 'compressed'
     }))
@@ -25,13 +24,13 @@ gulp.task('sass', () => {
 });
 
 gulp.task('ts', ['tslint'], () => {
-  var sourceTsFiles = [
+  let sourceTsFiles = [
     'typings/index.d.ts',
     'src/app/app.ts',
     'src/app/core/*.ts',
     'src/app/search-form/*.ts'
   ];
-  var tsResult = gulp.src(sourceTsFiles)
+  let tsResult = gulp.src(sourceTsFiles)
     .pipe(ts(tsProject));
   return tsResult.js
     .pipe(gulp.dest('src/app'));
@@ -51,7 +50,7 @@ gulp.task('bundle', ['ts'], () => {
 
 gulp.task('watch', () => {
   gulp.watch('src/app/**/*.ts', ['bundle']);
-  gulp.watch('src/styles/main.scss', ['sass']);
+  gulp.watch('src/styles/*.scss', ['sass']);
 });
 
 gulp.task('build', ['sass', 'bundle']);

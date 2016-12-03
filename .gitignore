@@ -6,7 +6,7 @@ node_modules
 typings
 src/app/output.js
 src/app/bundle.js
-src/styles/main.css
+src/styles/style.css
 
 # Editor
 .vscode
