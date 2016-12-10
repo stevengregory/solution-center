@@ -1,7 +1,7 @@
 namespace app.form {
   'use strict';
 
-  let searchForm = {
+  const searchForm = {
     templateUrl: 'app/search-form/search-form.component.html',
     controllerAs: 'vm',
     controller: 'SearchFormController'

@@ -8,19 +8,19 @@ namespace app.form {
   SearchFormController.$inject = ['config', 'dataService', 'searchFormService'];
 
   function SearchFormController(config: {dataTypes: Object}, dataService: any, searchFormService: any): void {
-    var vm = this;
+    let vm = this;
     vm.selectDataType = selectDataType;
     vm.selectIndustryType = selectIndustryType;
     vm.selectProduct = selectProduct;
 
-    vm.$onInit = function(): void {
+    vm.$onInit = (): void => {
       vm.dataTypes = config.dataTypes;
       vm.dataTypeSelection = vm.dataTypes[0];
       getIndustryTypes();
       getProducts();
     };
 
-    function getDataSet(): any {
+    function getDataSet(): Array<Object> {
       vm.solutions = vm.dataTypeSelection === vm.dataTypes[0] ? dataService.getSolutions() : dataService.getSolutionWins();
       return vm.solutions;
     }

@@ -12,7 +12,7 @@ namespace app.core {
     };
     return service;
 
-    function getSolutions(): any {
+    function getSolutions(): Array<Object> {
       return [{
         'name': 'Solution 1',
         'industry': 'Finance',
@@ -56,7 +56,7 @@ namespace app.core {
       }];
     }
 
-    function getSolutionWins(): any {
+    function getSolutionWins(): Array<Object> {
       return [{
         'name': 'Solution Wins 1',
         'industry': 'Finance',
