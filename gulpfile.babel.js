@@ -11,8 +11,10 @@ const tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('tslint', () => {
   return gulp.src(['src/app/**/*.ts'])
-    .pipe(tslint())
-    .pipe(tslint.report('verbose'));
+    .pipe(tslint({
+      formatter: 'verbose'
+    }))
+    .pipe(tslint.report())
 });
 
 gulp.task('sass', () => {
@@ -31,9 +33,8 @@ gulp.task('ts', ['tslint'], () => {
     'src/app/search-form/*.ts'
   ];
   let tsResult = gulp.src(sourceTsFiles)
-    .pipe(ts(tsProject));
-  return tsResult.js
-    .pipe(gulp.dest('src/app'));
+    .pipe(tsProject());
+  return tsResult.js.pipe(gulp.dest('src/app'));
 });
 
 gulp.task('bundle', ['ts'], () => {
